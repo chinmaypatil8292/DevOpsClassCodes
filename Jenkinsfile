@@ -6,10 +6,7 @@ pipeline{
     }
      agent any
 
-     node {
-	  def application = "myproject2app"
-     	  def dockerhubaccountid = "chinmay8292"
-	     
+     stages {	     
           stage('Checkout'){
                steps{
 		 echo 'cloning..'
@@ -51,7 +48,7 @@ pipeline{
           }
 	  stage('Build image') {
 	 	steps{
-			 app = docker.build("${dockerhubaccountid}/${application}:${BUILD_NUMBER}")
+			 app = docker.build("chinmay8292/myproject2app:${BUILD_NUMBER}")
 		 }
 	  }	
 	 stage('Push image') {
@@ -64,13 +61,13 @@ pipeline{
 	  }
 	 stage('Deploy') {
 		 steps{
-			 sh ("docker run -d -p 81:8080 -v /var/log/:/var/log/ ${dockerhubaccountid}/${application}:${BUILD_NUMBER}")
+			 sh ("docker run -d -p 81:8080 -v /var/log/:/var/log/ chinmay8292/myproject2app:${BUILD_NUMBER}")
 		 }
 	  }
 	 stage('Remove old images') {
 		 steps{
 			 // remove docker pld images
-			 sh("docker rmi ${dockerhubaccountid}/${application}:latest -f")\
+			 sh("docker rmi chinmay8292/myproject2app:latest -f")\
 		 }
 	 }
       }
