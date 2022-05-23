@@ -1,4 +1,4 @@
-FROM tomcat
+FROM tomcat:9.0.63-jdk8-temurin
 
 LABEL maintainer="chinmaypatil08021992@yahoo.com"
 
