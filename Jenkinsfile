@@ -46,29 +46,5 @@ pipeline{
                   sh 'mvn package'
               }
           }
-	  stage('Build image') {
-	 	steps{
-			 app = docker.build("chinmay8292/myproject2app:${BUILD_NUMBER}")
-		 }
-	  }	
-	 stage('Push image') {
-		 steps{
-			withDockerRegistry([ credentialsId: "dockerHub", url: "" ]) {
-				app.push()
-				app.push("latest")
-			}
-		}
-	  }
-	 stage('Deploy') {
-		 steps{
-			 sh ("docker run -d -p 81:8080 -v /var/log/:/var/log/ chinmay8292/myproject2app:${BUILD_NUMBER}")
-		 }
-	  }
-	 stage('Remove old images') {
-		 steps{
-			 // remove docker pld images
-			 sh("docker rmi chinmay8292/myproject2app:latest -f")
-		 }
-	 }
       }
 }
