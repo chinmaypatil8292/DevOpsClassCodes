@@ -3,6 +3,8 @@ node {
 	def dockerhubaccountid = "chinmay8292"
 	stage('Clone repository') {
 		checkout scm
+		//checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/chinmaypatil8292/DevOpsClassCodes.git']]])
+		sh "mvn -Dmaven.test.failure.ignore=true clean package"
 	}
 
 	stage('Build image') {
