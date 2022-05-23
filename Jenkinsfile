@@ -5,11 +5,11 @@ pipeline{
         maven 'maven'
     }
      agent any
-	
-     def application = "myproject2app"
-     def dockerhubaccountid = "chinmay8292"
 
      stages{
+	  def application = "myproject2app"
+     	  def dockerhubaccountid = "chinmay8292"
+	     
           stage('Checkout'){
                steps{
 		 echo 'cloning..'
