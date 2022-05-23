@@ -67,7 +67,7 @@ pipeline{
 	 stage('Remove old images') {
 		 steps{
 			 // remove docker pld images
-			 sh("docker rmi chinmay8292/myproject2app:latest -f")\
+			 sh("docker rmi chinmay8292/myproject2app:latest -f")
 		 }
 	 }
       }
