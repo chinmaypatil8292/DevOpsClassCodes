@@ -6,7 +6,7 @@ pipeline{
     }
      agent any
 
-     stages{
+     node {
 	  def application = "myproject2app"
      	  def dockerhubaccountid = "chinmay8292"
 	     
